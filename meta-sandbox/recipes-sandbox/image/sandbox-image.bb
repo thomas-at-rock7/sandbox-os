@@ -44,4 +44,5 @@ IMAGE_INSTALL:append = " \
     mosquitto \
     opkg \
     ethtool \
+    userland \
     "
