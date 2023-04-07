@@ -1,0 +1,15 @@
+#/bin/bash
+
+INTERFACE=$1
+EVENT=$2
+ETH_TOOL=/usr/sbin/ethtool
+ETH_IFACE=eth0
+ETH_ADVERTISE_MASK=0x00F # 0x00F is a combination of 10 Full/Half and 100 Full/Half
+
+if [ "$INTERFACE" == "$ETH_IFACE" ]
+then
+    if [ "$EVENT" == "up" ]
+    then
+        $ETH_TOOL -s $ETH_IFACE advertise $ETH_ADVERTISE_MASK
+    fi
+fi

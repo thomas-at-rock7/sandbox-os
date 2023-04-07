@@ -1,0 +1,21 @@
+# Copy this to kas-local.yml and modify
+
+header:
+    version: 8
+
+local_conf_header:
+
+# Specify directory to store downloads and sstate to speed up rebuilds
+# Don't share these with other UIDs, and don't use for multiple yocto builds in parallel
+
+#    downloads: |
+#        DL_DIR = "/path/to/downloads"
+
+#    sstate: |
+#        SSTATE_DIR = "/path/to/sstate-cache"
+
+#    special_utils: |
+#        IMAGE_INSTALL:append = " gdb gdbserver "
+
+#    slowdown: |
+#        BB_NUMBER_THREADS = "2"

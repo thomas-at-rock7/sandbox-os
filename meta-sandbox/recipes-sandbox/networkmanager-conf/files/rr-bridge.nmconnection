@@ -1,0 +1,22 @@
+# This will get overwritten by rocketship eventually
+
+[connection]
+id = rr-bridge
+uuid = 7a9623dd-2f88-4702-9a26-9ccaf02ca70e
+read-only = true
+type = bridge
+interface-name = lanbr0
+autoconnect = true
+autoconnect-retires = 0
+
+[ipv4]
+addresses = 192.168.250.1/24
+dad-timeout = 0
+method = manual
+never-default = true
+
+[ipv6]
+method = disabled
+
+[bridge]
+stp = false

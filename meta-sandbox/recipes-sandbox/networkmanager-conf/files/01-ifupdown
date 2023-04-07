@@ -1,0 +1,15 @@
+#/bin/bash
+
+INTERFACE=$1
+EVENT=$2
+
+# The Cellular interface seems to come up and down as different interfaces
+CELL_IFACE_UP=wwan0
+CELL_IFACE_DOWN=cdc-wdm0
+
+IRIDIUM_IFACE_UP=ppp0
+IRIDIUM_IFACE_DOWN=ppp0
+
+SYSTEMD_ID=rocketship-ifupdown
+
+echo "$INTERFACE received $EVENT" | systemd-cat -p info -t $SYSTEMD_ID

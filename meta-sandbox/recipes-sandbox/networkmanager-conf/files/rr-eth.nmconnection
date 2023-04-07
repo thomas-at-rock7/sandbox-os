@@ -1,0 +1,21 @@
+# This will get overwritten by rocketship eventually
+
+[connection]
+id = rr-eth
+uuid = 6c471304-571a-46d9-a88a-33e5ca086b5c
+read-only = true
+type = ethernet
+interface-name = eth0
+autoconnect = true
+autoconnect-retires = 0
+master = lanbr0
+slave-type = bridge
+
+[ipv4]
+method = disabled
+
+[ipv6]
+method = disabled
+
+[ethernet]
+auto-negotiate = true
