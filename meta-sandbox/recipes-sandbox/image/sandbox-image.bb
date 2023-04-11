@@ -8,7 +8,7 @@ MACHINE_FEATURES:append = " wifi usbhost"
 IMAGE_FEATURES:append = " ssh-server-dropbear"
 
 # Required for SSH by default a no password on root
-IMAGE_FEATURES:appen = " debug-tweaks"
+IMAGE_FEATURES:append = " debug-tweaks"
 
 # Bring in the Raspberry Pi firmware for WiFi
 IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43455"
