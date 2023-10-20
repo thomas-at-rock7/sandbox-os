@@ -1,0 +1,100 @@
+From cd53f23f3da2f7b51a3588280580756d05a9d7c5 Mon Sep 17 00:00:00 2001
+From: Thomas Roberts <thomas@rock7.com>
+Date: Tue, 26 Jan 2021 14:17:56 +0000
+Subject: [PATCH] Add SPI6 4 Chip Select Overlay
+
+---
+ .../boot/dts/overlays/spi6-4cs-overlay.dts    | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
+ create mode 100644 arch/arm/boot/dts/overlays/spi6-4cs-overlay.dts
+
+diff --git a/arch/arm/boot/dts/overlays/spi6-4cs-overlay.dts b/arch/arm/boot/dts/overlays/spi6-4cs-overlay.dts
+new file mode 100644
+index 000000000000..f3aace11b195
+--- /dev/null
++++ b/arch/arm/boot/dts/overlays/spi6-4cs-overlay.dts
+@@ -0,0 +1,81 @@
++/dts-v1/;
++/plugin/;
++
++
++/ {
++	compatible = "brcm,bcm2711";
++
++	fragment@0 {
++		target = <&spi6_cs_pins>;
++		frag0: __overlay__ {
++			brcm,pins = <18 27 26 16>;
++			brcm,function = <1>; /* output */
++		};
++	};
++
++	fragment@1 {
++		target = <&spi6>;
++		frag1: __overlay__ {
++			/* needed to avoid dtc warning */
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pinctrl-names = "default";
++		        pinctrl-0 = <&spi6_pins &spi6_cs_pins>;
++			cs-gpios = <&gpio 18 1>, <&gpio 27 1>, <&gpio 26 1>, <&gpio 16 1>;
++			status = "okay";
++
++			spidev6_0: spidev@0 {
++				compatible = "spidev";
++				reg = <0>;      /* CE0 */
++				#address-cells = <1>;
++				#size-cells = <0>;
++				spi-max-frequency = <125000000>;
++				status = "okay";
++			};
++
++			spidev6_1: spidev@1 {
++				compatible = "spidev";
++				reg = <1>;      /* CE1 */
++				#address-cells = <1>;
++				#size-cells = <0>;
++				spi-max-frequency = <125000000>;
++				status = "okay";
++			};
++
++			spidev6_2: spidev@2 {
++				compatible = "spidev";
++				reg = <2>;      /* CE2 */
++				#address-cells = <1>;
++				#size-cells = <0>;
++				spi-max-frequency = <125000000>;
++				status = "okay";
++			};
++
++			spidev6_3: spidev@3 {
++				compatible = "spidev";
++				reg = <3>;      /* CE3 */
++				#address-cells = <1>;
++				#size-cells = <0>;
++				spi-max-frequency = <125000000>;
++				status = "okay";
++			};
++		};
++	};
++
++	__overrides__ {
++		cs0_pin  = <&frag0>,"brcm,pins:0",
++			   <&frag1>,"cs-gpios:4";
++		cs1_pin  = <&frag0>,"brcm,pins:4",
++			   <&frag1>,"cs-gpios:16";
++		cs2_pin  = <&frag0>,"brcm,pins:8",
++			   <&frag1>,"cs-gpios:28";
++		cs3_pin  = <&frag0>,"brcm,pins:12",
++			   <&frag1>,"cs-gpios:40";
++		cs0_spidev = <&spidev6_0>,"status";
++		cs1_spidev = <&spidev6_1>,"status";
++		cs2_spidev = <&spidev6_2>,"status";
++		cs3_spidev = <&spidev6_3>,"status";
++	};
++};
++
+-- 
+2.25.1
+

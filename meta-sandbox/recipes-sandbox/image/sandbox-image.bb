@@ -3,7 +3,7 @@ inherit core-image
 
 DESCRIPTION = "Sandbox OS image"
 
-MACHINE_FEATURES:append = " wifi usbhost"
+MACHINE_FEATURES:append = " wifi usbhost vc4graphics"
 
 IMAGE_FEATURES:append = " ssh-server-dropbear"
 

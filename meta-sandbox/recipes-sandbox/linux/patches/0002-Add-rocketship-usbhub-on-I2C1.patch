@@ -1,0 +1,34 @@
+From f925183e5dbbeb93a26b98b8f35685a23d577a1b Mon Sep 17 00:00:00 2001
+From: Thomas Roberts <thomas@rock7.com>
+Date: Wed, 31 Mar 2021 15:00:46 +0100
+Subject: [PATCH 1/1] Add rocketship usbhub on I2C1
+
+---
+ .../dts/overlays/rocketship-usbhub-overlay.dts     | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 arch/arm/boot/dts/overlays/rocketship-usbhub-overlay.dts
+
+diff --git a/arch/arm/boot/dts/overlays/rocketship-usbhub-overlay.dts b/arch/arm/boot/dts/overlays/rocketship-usbhub-overlay.dts
+new file mode 100644
+index 000000000000..8b9c77c46659
+--- /dev/null
++++ b/arch/arm/boot/dts/overlays/rocketship-usbhub-overlay.dts
+@@ -0,0 +1,14 @@
++/dts-v1/;
++/plugin/;
++
++/{
++	compatible = "brcm,bcm2711";
++};
++
++&i2c1 {
++	usb2514bi@2c {
++		compatible = "microchip,usb2514bi";
++		reg = <0x2c>;
++	};
++};
++
+-- 
+2.25.1
+
+
