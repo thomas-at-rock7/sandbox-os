@@ -10,10 +10,7 @@ autoconnect = true
 autoconnect-retires = 0
 
 [ipv4]
-addresses = 192.168.250.1/24
-dad-timeout = 0
-method = manual
-never-default = true
+method = auto
 
 [ipv6]
 method = disabled
